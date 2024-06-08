@@ -45,12 +45,7 @@ namespace CaseFIO
         }
 
         void Init (string lastName, string firstName, string middleName, string sex = null)
-        {
-#if NET6_0_OR_GREATER
-            Console.WriteLine("NET6_0");
-#else
-            Console.WriteLine("NET481");
-#endif
+        { 
             if (string.IsNullOrEmpty(firstName))
             {
                 Match m = Regex.Match(lastName, @"^\s*(\S+)(\s+(\S+)(\s+(\S+))?)?\s*$");
