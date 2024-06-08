@@ -152,7 +152,11 @@ namespace CaseFIO
             // составные слова
             if (Regex.IsMatch(word, "/[-]/"))
             {
+#if NET6_0_OR_GREATER
                 string[]? list = word.Split(" ");
+#else
+                string[] list = word.Split(' ');
+#endif
                 for (int i = 0; i < list?.Length; i++)
                 {
                     list[i] = Word(list[i], sex, rules, gcase);
@@ -183,8 +187,13 @@ namespace CaseFIO
         /// <param name="rules">Правила</param>
         /// <param name="matchWholeWord">Хз</param>
         /// <returns></returns>
+#if NET6_0_OR_GREATER
         public static string? Pick(string word, string sex, string gcase, Rule[] rules, bool matchWholeWord)
         {
+#else
+        public static string Pick(string word, string sex, string gcase, Rule[] rules, bool matchWholeWord)
+        {
+#endif
             var wordLower = word.ToLower();
             for (int i = 0; i < rules?.Length; i++)
             {
@@ -195,6 +204,7 @@ namespace CaseFIO
             }
             return null;
         }
+ 
 
         public static bool RuleMatch(Rule rule, string word, string sex, bool matchWholeWord)
         {

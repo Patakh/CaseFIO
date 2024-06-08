@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace CaseFIO
 { 
@@ -25,7 +26,11 @@ namespace CaseFIO
         {
             if (!string.IsNullOrEmpty(fullName))
             {
+#if NET6_0_OR_GREATER
                 string[] fio = fullName.Split(" ");
+#else 
+                string[] fio = fullName.Split(' ');
+#endif
                 string lastName = fio.Length > 0 ? fio[0] : "";
                 string firstName = fio.Length > 1 ? fio[1] : "";
                 string middleName = fio.Length > 2 ? fio[2] : "";
@@ -41,6 +46,11 @@ namespace CaseFIO
 
         void Init (string lastName, string firstName, string middleName, string sex = null)
         {
+#if NET6_0_OR_GREATER
+            Console.WriteLine("NET6_0");
+#else
+            Console.WriteLine("NET481");
+#endif
             if (string.IsNullOrEmpty(firstName))
             {
                 Match m = Regex.Match(lastName, @"^\s*(\S+)(\s+(\S+)(\s+(\S+))?)?\s*$");
