@@ -152,8 +152,8 @@ namespace CaseFIO
             // составные слова
             if (Regex.IsMatch(word, "/[-]/"))
             {
-                string[] list = word.Split(' ');
-                for (int i = 0; i < list.Length; i++)
+                string[]? list = word.Split(" ");
+                for (int i = 0; i < list?.Length; i++)
                 {
                     list[i] = Word(list[i], sex, rules, gcase);
                 }
@@ -165,11 +165,12 @@ namespace CaseFIO
 
             if (rules.ExceptionsRule != null)
             {
-                string pick = Pick(word, sex, gcase, rules.ExceptionsRule, true);
-                if (pick != null) return pick;
+                var pick = Pick(word, sex, gcase, rules.ExceptionsRule, true);
+                if (pick != null) 
+                    return pick;
             }
 
-            string pickSuffix = Pick(word, sex, gcase, rules.SuffixesRule, false);
+            var pickSuffix = Pick(word, sex, gcase, rules.SuffixesRule, false);
             return pickSuffix ?? word;
         }
 
@@ -182,9 +183,9 @@ namespace CaseFIO
         /// <param name="rules">Правила</param>
         /// <param name="matchWholeWord">Хз</param>
         /// <returns></returns>
-        public static string Pick(string word, string sex, string gcase, Rule[] rules, bool matchWholeWord)
+        public static string? Pick(string word, string sex, string gcase, Rule[] rules, bool matchWholeWord)
         {
-            string wordLower = word.ToLower();
+            var wordLower = word.ToLower();
             for (int i = 0; i < rules?.Length; i++)
             {
                 if (RuleMatch(rules[i], wordLower, sex, matchWholeWord))
@@ -202,7 +203,7 @@ namespace CaseFIO
 
             for (int i = 0; i < rule.Test.Count(); i++)
             {
-                string test = matchWholeWord ? word : word.Substring(Math.Max(word.Length - rule.Test[i].Length, 0));
+                var test = matchWholeWord ? word : word.Substring(Math.Max(word.Length - rule.Test[i].Length, 0));
                 if (test == rule.Test[i]) return true;
             }
             return false;

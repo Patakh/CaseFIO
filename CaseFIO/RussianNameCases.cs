@@ -25,20 +25,22 @@ namespace CaseFIO
         {
             if (!string.IsNullOrEmpty(fullName))
             {
-                string[] fio = fullName.Split(' ');
+                string[] fio = fullName.Split(" ");
                 string lastName = fio.Length > 0 ? fio[0] : "";
                 string firstName = fio.Length > 1 ? fio[1] : "";
                 string middleName = fio.Length > 2 ? fio[2] : "";
 
-                ln = lastName;
-                fn = firstName;
-                mn = middleName;
+                Init(lastName, firstName, middleName); 
             }
-            this.sex = sex ?? GetSex();
+        }
+          
+        public RuNameCases(string lastName, string firstName, string middleName, string sex = null)
+        {
+            Init(lastName, firstName, middleName, sex);
         }
 
-        public RuNameCases(string lastName, string firstName, string middleName, string sex = null)
-        { 
+        void Init (string lastName, string firstName, string middleName, string sex = null)
+        {
             if (string.IsNullOrEmpty(firstName))
             {
                 Match m = Regex.Match(lastName, @"^\s*(\S+)(\s+(\S+)(\s+(\S+))?)?\s*$");
@@ -62,7 +64,7 @@ namespace CaseFIO
                 fn = firstName;
                 mn = middleName;
             }
-            this.sex = sex ?? GetSex(); 
+            this.sex = sex ?? GetSex();
         }
 
         public string GetSex()
