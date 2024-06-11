@@ -88,22 +88,25 @@ namespace CaseFIO
         }
 
         public string FullName(string gcase)
-        {
+        { 
             return ((fullNameSurnameLast ? "" : LastName(gcase) + " ") + FirstName(gcase) + " " + MiddleName(gcase) + (fullNameSurnameLast ? " " + LastName(gcase) : "")).Trim();
         }
 
         public string LastName(string gcase)
         {
+            if (string.IsNullOrEmpty(ln)) return null;
             return RussianNameProcessor.Word(ln, sex, russianNameProcessor.LastName, gcase);
         }
 
         public string FirstName(string gcase)
         {
+            if (string.IsNullOrEmpty(fn)) return null;
             return RussianNameProcessor.Word(fn, sex, russianNameProcessor.FirstName, gcase);
         }
 
         public string MiddleName(string gcase)
         {
+            if (string.IsNullOrEmpty(mn)) return null;
             return RussianNameProcessor.Word(mn, sex, russianNameProcessor.MiddleName, gcase);
         }
     }

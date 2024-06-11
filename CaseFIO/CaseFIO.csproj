@@ -2,8 +2,25 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net481</TargetFrameworks>   
-		<PlatformTarget>AnyCPU</PlatformTarget>
+		<PlatformTarget>AnyCPU</PlatformTarget>   
+		<Title>RussianNameCases</Title>   
+		<Authors>Patakh</Authors>   
+		<Product>RussianNameCases</Product>   
+		<Description>Библиотека на C# для склонения русских Фамилии Имен и Отчества по падежам без указания пола.</Description>   
+		<Version>2.0</Version>   
+		<Copyright>MIT</Copyright>   
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>   
+		<PackageIcon>orig.jpg</PackageIcon>   
+		<RepositoryUrl>https://github.com/Patakh/CaseFIO</RepositoryUrl>   
+		<PackageTags>System.Text.FIO</PackageTags>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\..\Users\ASUS\Downloads\orig.jpg">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.3">
